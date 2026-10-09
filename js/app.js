@@ -7,6 +7,15 @@ class Despesa {
         this.descricao = descricao
         this.valor = valor
     }
+
+    validarDados() {
+        for (let i in this) {
+            if (this[i] === undefined || this[i] === '' || this[i] === null) {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 //por enquanto sera usado o localstorage do browser para manter informacoes
@@ -53,5 +62,13 @@ function cadastrarDespesa() {
         valor.value
     )
 
-    bd.gravar(despesa)
+    if (despesa.validarDados()) {
+        //bd.gravar(despesa)
+        //dialogo de sucesso
+        $('#sucessoGravacao').modal('show')
+    } else {
+        //dialogo de erro
+        $('#erroGravacao').modal('show')
+    }
+
 }
