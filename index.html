@@ -126,29 +126,16 @@
     </div>
   </div>
 
-  <dialog class="dialog" id="erroGravacao">
-    <div class="dialog-header">
-      <h1 class="dialog-title">Erro na gravacao</h1>
-      <button type="button" class="btn-close" commandfor="erroGravacao" command="close" aria-label="Close"></button>
+  <dialog class="dialog" id="registroDespesa">
+    <div id="header">
+      <h1 class="dialog-title" id="titulo_modal"></h1>
+      <button type="button" class="btn-close" commandfor="registroDespesa" command="close" aria-label="Close"></button>
     </div>
-    <div class="dialog-body fg-danger">
-      <p>Por favor, preencha todos os campos</p>
-    </div>
-    <div class="dialog-footer">
-      <button type="button" class="btn-solid theme-danger" commandfor="erroGravacao" command="close">Corrigir</button>
-    </div>
-  </dialog>
-
-  <dialog class="dialog" id="sucessoGravacao">
-    <div class="dialog-header">
-      <h1 class="dialog-title">Registro inserido!</h1>
-      <button type="button" class="btn-close" commandfor="sucessoGravacao" command="close" aria-label="Close"></button>
-    </div>
-    <div class="dialog-body fg-success">
-      <p>Despesa cadastrada com sucesso!</p>
+    <div class="dialog-body">
+      <p id='body'></p>
     </div>
     <div class="dialog-footer">
-      <button type="button" class="btn-solid theme-success" commandfor="sucessoGravacao" command="close">Voltar</button>
+      <button id="botao" type="button" commandfor="registroDespesa" command="close"></button>
     </div>
   </dialog>
 
