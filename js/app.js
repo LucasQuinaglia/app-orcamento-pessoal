@@ -41,6 +41,28 @@ class Bd {
 
         localStorage.setItem('id', id)
     }
+
+    recuperarRegistros() {
+        //array despesas
+        let despesas = Array()
+
+        let id = localStorage.getItem('id')
+
+        //recupera todos os registros no localStorage
+        for (let i = 1; i <= id; i++) {
+            //recupera despesa
+            let despesa = JSON.parse(localStorage.getItem(i))
+
+            //validar indices removidos
+            if (despesa === null) {
+                continue
+            }
+
+            despesas.push(despesa)
+        }
+
+        return despesas
+    }
 }
 
 let bd = new Bd()
@@ -63,7 +85,7 @@ function cadastrarDespesa() {
     )
 
     if (despesa.validarDados()) {
-        //bd.gravar(despesa)
+        bd.gravar(despesa)
 
         //dialogo de sucesso
         document.getElementById('titulo_modal').innerHTML = 'Registro inserido com sucesso!'
@@ -83,4 +105,12 @@ function cadastrarDespesa() {
 
     }
 
+}
+
+function recuperarDespesas() {
+    let despesas = Array()
+
+    despesas = bd.recuperarRegistros()
+
+    console.log(despesas)
 }
