@@ -112,5 +112,32 @@ function recuperarDespesas() {
 
     despesas = bd.recuperarRegistros()
 
-    console.log(despesas)
+    var listaDespesas = document.getElementById('listaDespesas')
+
+    despesas.forEach(function (d) {
+        //insere linhas (tr)
+        let linha = listaDespesas.insertRow()
+
+        //cria colunas (td)
+        linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano}`
+
+        //ajusta tipo
+        switch (d.tipo) {
+            case '1': d.tipo = 'Alimentacao'
+                break
+            case '2': d.tipo = 'Educacao'
+                break
+            case '3': d.tipo = 'Lazer'
+                break
+            case '4': d.tipo = 'Saude'
+                break
+            case '5': d.tipo = 'Transporte'
+                break
+        }
+
+        linha.insertCell(1).innerHTML = d.tipo
+        linha.insertCell(2).innerHTML = d.descricao
+        linha.insertCell(3).innerHTML = d.valor
+    })
+
 }
