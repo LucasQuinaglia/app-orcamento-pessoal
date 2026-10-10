@@ -63,6 +63,32 @@ class Bd {
 
         return despesas
     }
+
+    pesquisar(despesa) {
+        let despesasFiltradas = Array()
+
+        despesasFiltradas = this.recuperarRegistros()
+
+        if (despesa.ano != '') {
+            despesasFiltradas = despesasFiltradas.filter(d => d.ano == despesa.ano)
+        }
+        if (despesa.mes != '') {
+            despesasFiltradas = despesasFiltradas.filter(d => d.mes == despesa.mes)
+        }
+        if (despesa.dia != '') {
+            despesasFiltradas = despesasFiltradas.filter(d => d.dia == despesa.dia)
+        }
+        if (despesa.tipo != '') {
+            despesasFiltradas = despesasFiltradas.filter(d => d.tipo == despesa.tipo)
+        }
+        if (despesa.descricao != '') {
+            despesasFiltradas = despesasFiltradas.filter(d => d.descricao == despesa.descricao)
+        }
+        if (despesa.valor != '') {
+            despesasFiltradas = despesasFiltradas.filter(d => d.valor == despesa.valor)
+        }
+        return despesasFiltradas
+    }
 }
 
 let bd = new Bd()
@@ -115,12 +141,14 @@ function cadastrarDespesa() {
 
 }
 
-function recuperarDespesas() {
-    let despesas = Array()
+function recuperarDespesas(despesas = Array(), filtro = false) {
 
-    despesas = bd.recuperarRegistros()
+    if (despesas.length == 0 && filtro == false) {
+        despesas = bd.recuperarRegistros()
+    }
 
     var listaDespesas = document.getElementById('listaDespesas')
+    listaDespesas.innerHTML = ''
 
     despesas.forEach(function (d) {
         //insere linhas (tr)
@@ -148,4 +176,19 @@ function recuperarDespesas() {
         linha.insertCell(3).innerHTML = d.valor
     })
 
+}
+
+function pesquisarRegistro() {
+    let ano = document.getElementById('ano').value
+    let mes = document.getElementById('mes').value
+    let dia = document.getElementById('dia').value
+    let tipo = document.getElementById('tipo').value
+    let descricao = document.getElementById('descricao').value
+    let valor = document.getElementById('valor').value
+
+    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+
+    let despesas = bd.pesquisar(despesa)
+
+    this.recuperarDespesas(despesas, true)
 }
