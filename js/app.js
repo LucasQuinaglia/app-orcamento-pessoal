@@ -94,6 +94,14 @@ function cadastrarDespesa() {
         document.getElementById('botao').innerHTML = 'Voltar'
         document.getElementById('botao').className = 'btn-solid theme-success'
         $('#registroDespesa').modal('show')
+
+        //limpa os campos
+        ano.value = ''
+        mes.value = ''
+        dia.value = ''
+        tipo.value = ''
+        descricao.value = ''
+        valor.value = ''
     } else {
         //dialogo de erro
         document.getElementById('titulo_modal').innerHTML = 'Erro na gravacao'
